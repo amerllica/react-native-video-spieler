@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
-import VideoSpieler from 'react-native-video-spieler';
+import IrPlayer from 'react-native-ir-player';
 
 export default function App() {
   const [result, setResult] = React.useState<number | undefined>();
 
   React.useEffect(() => {
-    VideoSpieler.multiply(3, 7).then(setResult);
+    IrPlayer.multiply(3, 7).then(setResult);
   }, []);
 
   return (

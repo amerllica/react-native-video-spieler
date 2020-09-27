@@ -1,9 +1,9 @@
 import { NativeModules } from 'react-native';
 
-type VideoSpielerType = {
+type IrPlayerType = {
   multiply(a: number, b: number): Promise<number>;
 };
 
-const { VideoSpieler } = NativeModules;
+const { IrPlayer } = NativeModules;
 
-export default VideoSpieler as VideoSpielerType;
+export default IrPlayer as IrPlayerType;

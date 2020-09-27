@@ -1,7 +1,7 @@
 {
-  "name": "react-native-video-spieler",
+  "name": "react-native-ir-player",
   "version": "0.1.0",
-  "description": "An awesome React Native library for Video playing based on VLC Mobile",
+  "description": "React Native IR Player (Video Player) based on VLC",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
   "types": "lib/typescript/src/index.d.ts",
@@ -13,7 +13,7 @@
     "android",
     "ios",
     "cpp",
-    "react-native-video-spieler.podspec",
+    "react-native-ir-player.podspec",
     "!lib/typescript/example",
     "!**/__tests__",
     "!**/__fixtures__",
@@ -34,13 +34,13 @@
     "ios",
     "android"
   ],
-  "repository": "https://github.com/amerllica/react-native-video-spieler",
-  "author": "amerllica <amerllica@gmail.com> (https://github.com/amerllica)",
+  "repository": "https://github.com/iran-react-community/react-native-ir-player",
+  "author": "amerllica <amerllica@gmail.com> (https://github.com/iran-react-community)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/amerllica/react-native-video-spieler/issues"
+    "url": "https://github.com/iran-react-community/react-native-ir-player/issues"
   },
-  "homepage": "https://github.com/amerllica/react-native-video-spieler#readme",
+  "homepage": "https://github.com/iran-react-community/react-native-ir-player#readme",
   "devDependencies": {
     "@commitlint/config-conventional": "^8.3.4",
     "@react-native-community/bob": "^0.16.2",

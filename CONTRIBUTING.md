@@ -49,9 +49,9 @@ Remember to add tests for your change if possible. Run the unit tests by:
 yarn test
 ```
 
-To edit the Objective-C files, open `example/ios/VideoSpielerExample.xcworkspace` in XCode and find the source files at `Pods > Development Pods > react-native-video-spieler`.
+To edit the Objective-C files, open `example/ios/IrPlayerExample.xcworkspace` in XCode and find the source files at `Pods > Development Pods > react-native-ir-player`.
 
-To edit the Kotlin files, open `example/android` in Android studio and find the source files at `reactnativevideospieler` under `Android`.
+To edit the Kotlin files, open `example/android` in Android studio and find the source files at `reactnativeirplayer` under `Android`.
 
 ### Commit message convention
 

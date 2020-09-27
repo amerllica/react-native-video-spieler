@@ -1,14 +1,14 @@
-package com.reactnativevideospieler
+package com.reactnativeirplayer
 
 import com.facebook.react.bridge.ReactApplicationContext
 import com.facebook.react.bridge.ReactContextBaseJavaModule
 import com.facebook.react.bridge.ReactMethod
 import com.facebook.react.bridge.Promise
 
-class VideoSpielerModule(reactContext: ReactApplicationContext) : ReactContextBaseJavaModule(reactContext) {
+class IrPlayerModule(reactContext: ReactApplicationContext) : ReactContextBaseJavaModule(reactContext) {
 
     override fun getName(): String {
-        return "VideoSpieler"
+        return "IrPlayer"
     }
 
     // Example method

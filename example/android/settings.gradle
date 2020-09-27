@@ -1,6 +1,6 @@
-rootProject.name = 'VideoSpielerExample'
+rootProject.name = 'IrPlayerExample'
 apply from: file("../node_modules/@react-native-community/cli-platform-android/native_modules.gradle"); applyNativeModulesSettingsGradle(settings)
 include ':app'
 
-include ':reactnativevideospieler'
-project(':reactnativevideospieler').projectDir = new File(rootProject.projectDir, '../../android')
+include ':reactnativeirplayer'
+project(':reactnativeirplayer').projectDir = new File(rootProject.projectDir, '../../android')

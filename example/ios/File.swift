@@ -1,6 +1,6 @@
 //
 //  File.swift
-//  VideoSpielerExample
+//  IrPlayerExample
 //
 
 import Foundation

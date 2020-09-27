@@ -1,6 +1,6 @@
 {
-  "name": "react-native-video-spieler-example",
-  "description": "Example app for react-native-video-spieler",
+  "name": "react-native-ir-player-example",
+  "description": "Example app for react-native-ir-player",
   "version": "0.0.1",
   "private": true,
   "scripts": {

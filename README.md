@@ -1,21 +1,21 @@
-# react-native-video-spieler
+# react-native-ir-player
 
-An awesome React Native library for Video playing based on VLC Mobile
+React Native IR Player (Video Player) based on VLC
 
 ## Installation
 
 ```sh
-npm install react-native-video-spieler
+npm install react-native-ir-player
 ```
 
 ## Usage
 
 ```js
-import VideoSpieler from "react-native-video-spieler";
+import IrPlayer from "react-native-ir-player";
 
 // ...
 
-const result = await VideoSpieler.multiply(3, 7);
+const result = await IrPlayer.multiply(3, 7);
 ```
 
 ## Contributing
