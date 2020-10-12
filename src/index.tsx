@@ -1,9 +1,10 @@
-import { NativeModules } from 'react-native';
+import * as React from 'react';
+import { requireNativeComponent, NativeModules } from 'react-native';
 
-type IrPlayerType = {
-  multiply(a: number, b: number): Promise<number>;
-};
+const IrPlayerView = requireNativeComponent('RCTIrPlayer');
 
-const { IrPlayer } = NativeModules;
-
-export default IrPlayer as IrPlayerType;
+export default class IrPlayer extends React.PureComponent {
+  render() {
+    return <IrPlayerView />
+  }
+}

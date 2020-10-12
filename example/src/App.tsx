@@ -3,15 +3,10 @@ import { StyleSheet, View, Text } from 'react-native';
 import IrPlayer from 'react-native-ir-player';
 
 export default function App() {
-  const [result, setResult] = React.useState<number | undefined>();
-
-  React.useEffect(() => {
-    IrPlayer.multiply(3, 7).then(setResult);
-  }, []);
 
   return (
     <View style={styles.container}>
-      <Text>Result: {result}</Text>
+      <IrPlayer />
     </View>
   );
 }

@@ -7,11 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-
-
-		F4FF95D7245B92E800C19C63 /*  IrPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FF95D6245B92E800C19C63 /*  IrPlayer.swift */; };
-
-		5E555C0D2413F4C50049A1A2 /* IrPlayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = B3E7B5891CC2AC0600A0062D /* IrPlayer.mm */; };
+		4E259DCF2534DE2A003614F4 /* MobileVLCKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E259DCE2534DE2A003614F4 /* MobileVLCKit.framework */; };
+		C8EBC163481B511A361DF3FF /* Pods_IrPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FEEA4403DBE223C1322CE4A /* Pods_IrPlayer.framework */; };
+		F4FF95D7245B92E800C19C63 /* IrPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FF95D6245B92E800C19C63 /* IrPlayer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -28,12 +26,15 @@
 
 /* Begin PBXFileReference section */
 		134814201AA4EA6300B7C361 /* libIrPlayer.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libIrPlayer.a; sourceTree = BUILT_PRODUCTS_DIR; };
-
-
+		4E259DC22534DC45003614F4 /* MobileVLCKit */ = {isa = PBXFileReference; lastKnownFileType = folder; path = MobileVLCKit; sourceTree = "<group>"; };
+		4E259DC62534DC60003614F4 /* MobileVLCKit */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = MobileVLCKit; path = MobileVLCKit/MobileVLCKit.framework/MobileVLCKit; sourceTree = "<group>"; };
+		4E259DCE2534DE2A003614F4 /* MobileVLCKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileVLCKit.framework; path = MobileVLCKit/MobileVLCKit.framework; sourceTree = "<group>"; };
+		4FEEA4403DBE223C1322CE4A /* Pods_IrPlayer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IrPlayer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5D44BF65644565F96253EFE1 /* Pods-IrPlayer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IrPlayer.release.xcconfig"; path = "Target Support Files/Pods-IrPlayer/Pods-IrPlayer.release.xcconfig"; sourceTree = "<group>"; };
+		947D44A3F79052E9E07001D7 /* Pods-IrPlayer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IrPlayer.debug.xcconfig"; path = "Target Support Files/Pods-IrPlayer/Pods-IrPlayer.debug.xcconfig"; sourceTree = "<group>"; };
 		B3E7B5891CC2AC0600A0062D /* IrPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IrPlayer.m; sourceTree = "<group>"; };
 		F4FF95D5245B92E700C19C63 /* IrPlayer-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "IrPlayer-Bridging-Header.h"; sourceTree = "<group>"; };
 		F4FF95D6245B92E800C19C63 /* IrPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IrPlayer.swift; sourceTree = "<group>"; };
-
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,6 +42,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4E259DCF2534DE2A003614F4 /* MobileVLCKit.framework in Frameworks */,
+				C8EBC163481B511A361DF3FF /* Pods_IrPlayer.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -58,14 +61,33 @@
 		58B511D21A9E6C8500147676 = {
 			isa = PBXGroup;
 			children = (
-
-
 				F4FF95D6245B92E800C19C63 /* IrPlayer.swift */,
 				B3E7B5891CC2AC0600A0062D /* IrPlayer.m */,
 				F4FF95D5245B92E700C19C63 /* IrPlayer-Bridging-Header.h */,
-
 				134814211AA4EA7D00B7C361 /* Products */,
+				E793FC868A5774AD585067CC /* Pods */,
+				8AB105D125A5FC43A6FA8D04 /* Frameworks */,
 			);
+			sourceTree = "<group>";
+		};
+		8AB105D125A5FC43A6FA8D04 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4E259DCE2534DE2A003614F4 /* MobileVLCKit.framework */,
+				4E259DC22534DC45003614F4 /* MobileVLCKit */,
+				4E259DC62534DC60003614F4 /* MobileVLCKit */,
+				4FEEA4403DBE223C1322CE4A /* Pods_IrPlayer.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E793FC868A5774AD585067CC /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				947D44A3F79052E9E07001D7 /* Pods-IrPlayer.debug.xcconfig */,
+				5D44BF65644565F96253EFE1 /* Pods-IrPlayer.release.xcconfig */,
+			);
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -75,6 +97,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 58B511EF1A9E6C8500147676 /* Build configuration list for PBXNativeTarget "IrPlayer" */;
 			buildPhases = (
+				AB227B6B99CCE50044E2D6FB /* [CP] Check Pods Manifest.lock */,
 				58B511D71A9E6C8500147676 /* Sources */,
 				58B511D81A9E6C8500147676 /* Frameworks */,
 				58B511D91A9E6C8500147676 /* CopyFiles */,
@@ -120,16 +143,37 @@
 		};
 /* End PBXProject section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		AB227B6B99CCE50044E2D6FB /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-IrPlayer-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		58B511D71A9E6C8500147676 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-
-
 				F4FF95D7245B92E800C19C63 /* IrPlayer.swift in Sources */,
-				B3E7B58A1CC2AC0600A0062D /* IrPlayer.m in Sources */,
-
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -179,7 +223,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -222,7 +266,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -231,42 +275,54 @@
 		};
 		58B511F01A9E6C8500147676 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 947D44A3F79052E9E07001D7 /* Pods-IrPlayer.debug.xcconfig */;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/MobileVLCKit",
+				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"$(SRCROOT)/../../../React/**",
 					"$(SRCROOT)/../../react-native/React/**",
 				);
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/MobileVLCKit/MobileVLCKit.framework",
+				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = IrPlayer;
 				SKIP_INSTALL = YES;
-
 				SWIFT_OBJC_BRIDGING_HEADER = "IrPlayer-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
-
 			};
 			name = Debug;
 		};
 		58B511F11A9E6C8500147676 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5D44BF65644565F96253EFE1 /* Pods-IrPlayer.release.xcconfig */;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/MobileVLCKit",
+				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"$(SRCROOT)/../../../React/**",
 					"$(SRCROOT)/../../react-native/React/**",
 				);
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/MobileVLCKit/MobileVLCKit.framework",
+				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = IrPlayer;
 				SKIP_INSTALL = YES;
-
 				SWIFT_OBJC_BRIDGING_HEADER = "IrPlayer-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
-
 			};
 			name = Release;
 		};
