@@ -1,6 +1,6 @@
 import Foundation
 import UIKit
-import Mobile
+//import MobileVLCKit
 
 @objc(IrPlayer)
 class IrPlayer: UIView {
@@ -20,10 +20,14 @@ class IrPlayer: UIView {
     // in here you can configure your view
     private func setupView() {
         let label : UILabel = UILabel(frame: CGRect(x: 0, y: 0, width: 300, height: 40))
-        label.text = "Ammmmmmmmmmerrrr + Maziar Spile"
+//        label.text = "Ammmmmmmmmmerrrr + Maziar Spile"
         self.addSubview(label)
         self.backgroundColor = self.status ? .green : .red
         self.isUserInteractionEnabled = true
+        let mediaPlayer = VLCMediaPlayer()
+//        mediaPlayer.delegate = self
+        mediaPlayer.drawable = self
+        mediaPlayer.media = VLCMedia.init(url: URL(string: "http://streams.videolan.org/streams/mp4/Mr_MrsSmith-h264_aac.mp4")!)
     }
    
      

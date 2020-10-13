@@ -6,7 +6,7 @@ target 'IrPlayer' do
   use_frameworks!
 
   # Pods for IrPlayer
-#  pod 'MobileVLCKit'
+  pod 'MobileVLCKit'
 end
 
 post_install do |installer|
