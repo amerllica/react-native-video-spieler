@@ -1,9 +1,8 @@
 import * as React from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import IrPlayer from 'react-native-ir-player';
 
 export default function App() {
-
   return (
     <View style={styles.container}>
       <IrPlayer />
