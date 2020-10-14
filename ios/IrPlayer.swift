@@ -1,6 +1,5 @@
 import Foundation
 import UIKit
-//import MobileVLCKit
 
 @objc(IrPlayer)
 class IrPlayer: UIView {
@@ -33,7 +32,7 @@ class IrPlayer: UIView {
      
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         let params: [String : Any] = ["value1":"react demo","value2":1]
-        print("event==========>\(event)")
+        //        print("event==========>\(String(describing: event))")
         if let onClick = self.onClick {
             print("params==========>\(params)")
             onClick(params)
