@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4E259DCF2534DE2A003614F4 /* MobileVLCKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E259DCE2534DE2A003614F4 /* MobileVLCKit.framework */; };
+		4EAB3C3B2537EF74009B0CC2 /* RCTIrPayerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EAB3C3A2537EF74009B0CC2 /* RCTIrPayerManager.swift */; };
 		C8EBC163481B511A361DF3FF /* Pods_IrPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FEEA4403DBE223C1322CE4A /* Pods_IrPlayer.framework */; };
 		F4FF95D7245B92E800C19C63 /* IrPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FF95D6245B92E800C19C63 /* IrPlayer.swift */; };
 /* End PBXBuildFile section */
@@ -29,10 +30,11 @@
 		4E259DC22534DC45003614F4 /* MobileVLCKit */ = {isa = PBXFileReference; lastKnownFileType = folder; path = MobileVLCKit; sourceTree = "<group>"; };
 		4E259DC62534DC60003614F4 /* MobileVLCKit */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = MobileVLCKit; path = MobileVLCKit/MobileVLCKit.framework/MobileVLCKit; sourceTree = "<group>"; };
 		4E259DCE2534DE2A003614F4 /* MobileVLCKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileVLCKit.framework; path = MobileVLCKit/MobileVLCKit.framework; sourceTree = "<group>"; };
+		4EAB3C3A2537EF74009B0CC2 /* RCTIrPayerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RCTIrPayerManager.swift; sourceTree = "<group>"; };
 		4FEEA4403DBE223C1322CE4A /* Pods_IrPlayer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IrPlayer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D44BF65644565F96253EFE1 /* Pods-IrPlayer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IrPlayer.release.xcconfig"; path = "Target Support Files/Pods-IrPlayer/Pods-IrPlayer.release.xcconfig"; sourceTree = "<group>"; };
 		947D44A3F79052E9E07001D7 /* Pods-IrPlayer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IrPlayer.debug.xcconfig"; path = "Target Support Files/Pods-IrPlayer/Pods-IrPlayer.debug.xcconfig"; sourceTree = "<group>"; };
-		B3E7B5891CC2AC0600A0062D /* IrPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IrPlayer.m; sourceTree = "<group>"; };
+		B3E7B5891CC2AC0600A0062D /* RCTIrPayerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCTIrPayerManager.m; sourceTree = "<group>"; };
 		F4FF95D5245B92E700C19C63 /* IrPlayer-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "IrPlayer-Bridging-Header.h"; sourceTree = "<group>"; };
 		F4FF95D6245B92E800C19C63 /* IrPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IrPlayer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -61,8 +63,9 @@
 		58B511D21A9E6C8500147676 = {
 			isa = PBXGroup;
 			children = (
+				4EAB3C3A2537EF74009B0CC2 /* RCTIrPayerManager.swift */,
+				B3E7B5891CC2AC0600A0062D /* RCTIrPayerManager.m */,
 				F4FF95D6245B92E800C19C63 /* IrPlayer.swift */,
-				B3E7B5891CC2AC0600A0062D /* IrPlayer.m */,
 				F4FF95D5245B92E700C19C63 /* IrPlayer-Bridging-Header.h */,
 				134814211AA4EA7D00B7C361 /* Products */,
 				E793FC868A5774AD585067CC /* Pods */,
@@ -173,6 +176,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4EAB3C3B2537EF74009B0CC2 /* RCTIrPayerManager.swift in Sources */,
 				F4FF95D7245B92E800C19C63 /* IrPlayer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

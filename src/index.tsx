@@ -1,10 +1,13 @@
 import * as React from 'react';
 import { requireNativeComponent } from 'react-native';
 
-const IrPlayerView = requireNativeComponent('RCTIrPlayer');
+const RCTIrPlayerView = requireNativeComponent('RCTIrPlayer');
 
-export default class IrPlayer extends React.PureComponent {
+export default class RCTIrPlayer extends React.PureComponent {
+  componentDidMount() {
+    // RCTIrPlayerView.play();
+  }
   render() {
-    return <IrPlayerView />;
+    return <RCTIrPlayerView {...this.props} />;
   }
 }

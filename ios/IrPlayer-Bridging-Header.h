@@ -7,4 +7,5 @@
 #import <React/RCTRootView.h>
 #import <React/RCTComponent.h>
 #import <React/RCTDevLoadingView.h>
+#import "React/RCTUIManager.h"
 //#import <MobileVLCKit/MobileVLCKit.h>
