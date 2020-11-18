@@ -16,7 +16,15 @@ export default class RCTIrPlayer extends Component {
   play = () => {
     UIManager.dispatchViewManagerCommand(
       findNodeHandle(this.irplayerInstance.current),
-      UIManager[COMPONENT_NAME].Commands.playFromManager,
+      UIManager[COMPONENT_NAME].Commands.play,
+      []
+    );
+  };
+
+  pause = () => {
+    UIManager.dispatchViewManagerCommand(
+      findNodeHandle(this.irplayerInstance.current),
+      UIManager[COMPONENT_NAME].Commands.pause,
       []
     );
   };

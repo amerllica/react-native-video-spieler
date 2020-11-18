@@ -9,6 +9,10 @@ export default function App() {
     thePlayer.current.play();
   };
 
+  const pauseHandler = () => {
+    thePlayer.current.pause();
+  };
+
   return (
     <View style={styles.container}>
       <TouchableOpacity
@@ -17,6 +21,14 @@ export default function App() {
       >
         <Text>PLAY!</Text>
       </TouchableOpacity>
+
+      <TouchableOpacity
+        style={{ padding: 15, backgroundColor: 'brown' }}
+        onPress={pauseHandler}
+      >
+        <Text>PAUSE!</Text>
+      </TouchableOpacity>
+
       <View style={styles.videoWrapper}>
         <RCTIrPlayerView
           ref={thePlayer}

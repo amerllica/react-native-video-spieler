@@ -62,5 +62,10 @@ class IrPlayer: UIView {
             mediaPlayer.play()
         }
     }
+    
+    @objc(pause)
+    func pause() -> Void {
+        mediaPlayer.pause()
+    }
 
 }

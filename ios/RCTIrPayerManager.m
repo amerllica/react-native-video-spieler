@@ -6,8 +6,8 @@
 
 @interface RCT_EXTERN_MODULE(RCTIrPlayerManager, RCTViewManager)
 
-RCT_EXTERN_METHOD(playFromManager:(nonnull NSNumber *)node)
-//    RCT_EXTERN_METHOD(pause)
+RCT_EXTERN_METHOD(play:(nonnull NSNumber *)node)
+RCT_EXTERN_METHOD(pause:(nonnull NSNumber *)node)
 RCT_EXPORT_VIEW_PROPERTY(color, NSString);
 RCT_EXPORT_VIEW_PROPERTY(txt, NSString);
 RCT_EXPORT_VIEW_PROPERTY(src, NSString);

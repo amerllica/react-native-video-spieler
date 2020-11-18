@@ -21,7 +21,7 @@ class RCTIrPlayerManager: RCTViewManager {
         return view
     }
     
-    @objc func playFromManager(_ node: NSNumber) {
+    @objc func play(_ node: NSNumber) {
         
         DispatchQueue.main.async {
           let component = self.bridge.uiManager.view(
@@ -31,6 +31,18 @@ class RCTIrPlayerManager: RCTViewManager {
         }
       }
 
+    
+    @objc func pause(_ node: NSNumber) {
+        
+        DispatchQueue.main.async {
+          let component = self.bridge.uiManager.view(
+            forReactTag: node
+          ) as! IrPlayer
+          component.pause()
+        }
+      }
+
+    
 //    @objc
 //    func getCount(_ callback: RCTResponseSenderBlock) {
 //      callback([count])
