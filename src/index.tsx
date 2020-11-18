@@ -1,13 +1,28 @@
-import * as React from 'react';
-import { requireNativeComponent } from 'react-native';
+import React, { Component, createRef } from 'react';
+import {
+  requireNativeComponent,
+  findNodeHandle,
+  UIManager,
+} from 'react-native';
+const COMPONENT_NAME = 'RCTIrPlayer';
+const RCTIrPlayerView = requireNativeComponent(COMPONENT_NAME);
 
-const RCTIrPlayerView = requireNativeComponent('RCTIrPlayer');
-
-export default class RCTIrPlayer extends React.PureComponent {
-  componentDidMount() {
-    // RCTIrPlayerView.play();
+export default class RCTIrPlayer extends Component {
+  constructor(props) {
+    super(props);
+    this.irplayerInstance = createRef();
   }
+
+  play = () => {
+    UIManager.dispatchViewManagerCommand(
+      findNodeHandle(this.irplayerInstance.current),
+      UIManager[COMPONENT_NAME].Commands.playFromManager,
+      []
+    );
+  };
+
   render() {
-    return <RCTIrPlayerView {...this.props} />;
+    return <RCTIrPlayerView ref={this.irplayerInstance} {...this.props} />;
   }
+
 }

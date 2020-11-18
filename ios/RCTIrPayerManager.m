@@ -8,11 +8,11 @@
 
 RCT_EXTERN_METHOD(playFromManager:(nonnull NSNumber *)node)
 //    RCT_EXTERN_METHOD(pause)
-    RCT_EXPORT_VIEW_PROPERTY(color, NSString);
-    RCT_EXPORT_VIEW_PROPERTY(txt, NSString);
-    RCT_EXPORT_VIEW_PROPERTY(src, NSString);
-    RCT_EXPORT_VIEW_PROPERTY(playerWidth, NSNumber)
-    RCT_EXPORT_VIEW_PROPERTY(playerHeight, NSNumber)
+RCT_EXPORT_VIEW_PROPERTY(color, NSString);
+RCT_EXPORT_VIEW_PROPERTY(txt, NSString);
+RCT_EXPORT_VIEW_PROPERTY(src, NSString);
+RCT_EXPORT_VIEW_PROPERTY(width, NSNumber)
+RCT_EXPORT_VIEW_PROPERTY(height, NSNumber)
 
 //    RCT_EXPORT_VIEW_PROPERTY(onPlay, RCTBubblingEventBlock)
 //    RCT_EXPORT_VIEW_PROPERTY(onPause, RCTDirectEventBlock)
