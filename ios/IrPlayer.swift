@@ -54,6 +54,7 @@ class IrPlayer: UIView {
         mediaPlayer.drawable = self
         if let url = URL(string: self.src) {
             mediaPlayer.media = VLCMedia(url: url)
+            mediaPlayer.media.delegate = self
         }
     }
 
@@ -181,5 +182,23 @@ extension IrPlayer: VLCMediaPlayerDelegate {
                             "remainingTime": mediaPlayer.remainingTime.intValue])
         }
     }
+    
 }
 
+
+extension IrPlayer: VLCMediaDelegate {
+    func mediaDidFinishParsing(_ aMedia: VLCMedia) {
+        switch aMedia.parsedStatus {
+        case .done:
+            break
+        case .failed:
+            break
+        case .skipped:
+            break
+        case .timeout:
+            break
+        default:
+            break
+        }
+    }
+}
