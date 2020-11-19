@@ -6,10 +6,21 @@
 
 @interface RCT_EXTERN_MODULE(RCTIrPlayerManager, RCTViewManager)
 
+
+#pragma mark Extern-Methods
 RCT_EXTERN_METHOD(play:(nonnull NSNumber *)node)
 RCT_EXTERN_METHOD(pause:(nonnull NSNumber *)node)
-RCT_EXPORT_VIEW_PROPERTY(color, NSString);
-RCT_EXPORT_VIEW_PROPERTY(txt, NSString);
+RCT_EXTERN_METHOD(togglePlay:(nonnull NSNumber *)node)
+RCT_EXTERN_METHOD(stop:(nonnull NSNumber *)node)
+RCT_EXTERN_METHOD(remainingTime:(nonnull NSNumber *)node)
+RCT_EXTERN_METHOD(state:(nonnull NSNumber *)node)
+
+#pragma mark Extern-Methods-With-Callback
+RCT_EXTERN_METHOD(getTime:(nonnull NSNumber *)node resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
+
+
+
+#pragma mark Properties
 RCT_EXPORT_VIEW_PROPERTY(src, NSString);
 RCT_EXPORT_VIEW_PROPERTY(width, NSNumber)
 RCT_EXPORT_VIEW_PROPERTY(height, NSNumber)

@@ -35,37 +35,91 @@ class IrPlayer: UIView {
         setupView()
     }
 
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        setupView()
-    }
-
     private func setupView() {
         self.frame = CGRect(x: 0, y: 0, width: self.width.intValue , height: self.height.intValue)
         self.isUserInteractionEnabled = true
+        mediaPlayer.delegate = self
         mediaPlayer.drawable = self
         if let url = URL(string: self.src) {
             mediaPlayer.media = VLCMedia(url: url)
         }
-        
     }
 
     @objc(play)
     func play() -> Void {
-        
-       print("-------------------> play fired")
-    
-        if let url = URL(string: self.src) {
-            print("-------------------> mediaPlayer \(mediaPlayer)")
-            mediaPlayer.media = VLCMedia(url: url)
-            print("-------------------> url \(url)")
-            mediaPlayer.play()
-        }
+        print("--------------->play")
+        self.mediaPlayer.play()
     }
     
     @objc(pause)
     func pause() -> Void {
         mediaPlayer.pause()
     }
+    
+    @objc(stop)
+    func stop() -> Void {
+        mediaPlayer.stop()
+    }
+    
+    @objc(remainingTime)
+    func remainingTime() -> String {
+        return mediaPlayer.remainingTime.stringValue
+    }
+    
+    @objc(state)
+    func state() -> String {
+        return VLCMediaPlayerStateToString(mediaPlayer.state)
+    }
+    
+    @objc(togglePlay)
+    func togglePlay() -> Void {
+        if mediaPlayer.isPlaying {
+            mediaPlayer.pause()
+        }
+        else {
+            mediaPlayer.play()
+        }
+    }
+    
+    @objc(getTime)
+    func getTime() -> String {
+        print("--------------->time")
+        return mediaPlayer.time.stringValue
+    }
 
 }
+
+
+extension IrPlayer: VLCMediaPlayerDelegate {
+    func mediaPlayerStateChanged(_ aNotification: Notification!) {
+        switch mediaPlayer.state {
+        case .stopped:
+            print("stopped")
+            break
+        case .buffering:
+            print("buffering")
+            break
+        case .ended:
+            print("ended")
+            break
+        case .error:
+            print("error")
+            break
+        case .esAdded:
+            print("esAdded")
+            break
+        case .opening:
+            print("opening")
+            break
+        case .paused:
+            print("paused")
+            break
+        case .playing:
+            print("playing")
+            break
+        default:
+            break
+        }
+    }
+}
+

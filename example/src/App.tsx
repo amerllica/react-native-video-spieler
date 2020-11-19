@@ -13,6 +13,14 @@ export default function App() {
     thePlayer.current.pause();
   };
 
+  const stopHandler = () => {
+    thePlayer.current.stop();
+  };
+
+  const togglePlayHandler = () => {
+    thePlayer.current.togglePlay();
+  };
+
   return (
     <View style={styles.container}>
       <TouchableOpacity
@@ -29,14 +37,26 @@ export default function App() {
         <Text>PAUSE!</Text>
       </TouchableOpacity>
 
+      <TouchableOpacity
+        style={{ padding: 15, backgroundColor: 'blue' }}
+        onPress={stopHandler}
+      >
+        <Text>STOP!</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity
+        style={{ padding: 15, backgroundColor: 'green' }}
+        onPress={togglePlayHandler}
+      >
+        <Text>TOGGLE_PLAY!</Text>
+      </TouchableOpacity>
+
       <View style={styles.videoWrapper}>
         <RCTIrPlayerView
           ref={thePlayer}
           width={200}
           height={100}
-          src={
-            'http://streams.videolan.org/streams/mp4/Mr_MrsSmith-h264_aac.mp4'
-          }
+          src="http://streams.videolan.org/streams/mp4/Mr_MrsSmith-h264_aac.mp4"
         />
       </View>
     </View>
