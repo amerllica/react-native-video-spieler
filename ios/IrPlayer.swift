@@ -6,6 +6,18 @@ import MobileVLCKit
 @objc(IrPlayer)
 class IrPlayer: UIView {
     @objc var mediaPlayer = VLCMediaPlayer()
+    
+    @objc var onStateChange: RCTDirectEventBlock?
+    @objc var onStopped: RCTDirectEventBlock?
+    @objc var onBuffering: RCTDirectEventBlock?
+    @objc var onEnded: RCTDirectEventBlock?
+    @objc var onError: RCTDirectEventBlock?
+    @objc var onEsAdded: RCTDirectEventBlock?
+    @objc var onOpening: RCTDirectEventBlock?
+    @objc var onPaused: RCTDirectEventBlock?
+    @objc var onPlaying: RCTDirectEventBlock?
+    
+    @objc var onTimeChanged: RCTDirectEventBlock?
 
     @objc var width: NSNumber = 100 {
         didSet {
@@ -24,7 +36,7 @@ class IrPlayer: UIView {
             self.setupView()
         }
     }
-
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
@@ -47,7 +59,6 @@ class IrPlayer: UIView {
 
     @objc(play)
     func play() -> Void {
-        print("--------------->play")
         self.mediaPlayer.play()
     }
     
@@ -61,16 +72,6 @@ class IrPlayer: UIView {
         mediaPlayer.stop()
     }
     
-    @objc(remainingTime)
-    func remainingTime() -> String {
-        return mediaPlayer.remainingTime.stringValue
-    }
-    
-    @objc(state)
-    func state() -> String {
-        return VLCMediaPlayerStateToString(mediaPlayer.state)
-    }
-    
     @objc(togglePlay)
     func togglePlay() -> Void {
         if mediaPlayer.isPlaying {
@@ -81,44 +82,103 @@ class IrPlayer: UIView {
         }
     }
     
-    @objc(getTime)
-    func getTime() -> String {
-        print("--------------->time")
-        return mediaPlayer.time.stringValue
+    @objc
+    func setMediaTime(time : NSNumber) -> Void {
+        mediaPlayer.time = VLCTime(int: time.int32Value)
     }
+    
 
 }
 
 
 extension IrPlayer: VLCMediaPlayerDelegate {
     func mediaPlayerStateChanged(_ aNotification: Notification!) {
+        print("mediaPlayer.media.length--------->\(mediaPlayer.media.length.intValue)")
+        
+        if onStateChange != nil {
+            onStateChange!(["state": VLCMediaPlayerStateToString(mediaPlayer.state) ?? "No State" ,
+                            "time": mediaPlayer.time.intValue,
+                            "mediaLength": mediaPlayer.media.length.intValue,
+                            "remainingTime": mediaPlayer.remainingTime.intValue])
+        }
         switch mediaPlayer.state {
         case .stopped:
-            print("stopped")
+            if onStopped != nil {
+                onStopped!(["state": VLCMediaPlayerStateToString(mediaPlayer.state) ?? "No State" ,
+                            "time": mediaPlayer.time.intValue,
+                            "mediaLength": mediaPlayer.media.length.intValue,
+                            "remainingTime": mediaPlayer.remainingTime.intValue])
+            }
             break
         case .buffering:
-            print("buffering")
+            if onBuffering != nil {
+                onBuffering!(["state": VLCMediaPlayerStateToString(mediaPlayer.state) ?? "No State" ,
+                            "time": mediaPlayer.time.intValue,
+                            "mediaLength": mediaPlayer.media.length.intValue,
+                            "mediaLengthMinute": mediaPlayer.media.length.stringValue ?? "",
+                            "remainingTime": mediaPlayer.remainingTime.intValue])
+            }
             break
         case .ended:
-            print("ended")
+            if onEnded != nil {
+                onEnded!(["state": VLCMediaPlayerStateToString(mediaPlayer.state) ?? "No State" ,
+                          "time": mediaPlayer.time.intValue,
+                          "mediaLength": mediaPlayer.media.length.intValue,
+                          "remainingTime": mediaPlayer.remainingTime.intValue])
+            }
             break
         case .error:
-            print("error")
+            if onError != nil {
+                onError!(["state": VLCMediaPlayerStateToString(mediaPlayer.state) ?? "No State" ,
+                          "time": mediaPlayer.time.intValue,
+                          "mediaLength": mediaPlayer.media.length.intValue,
+                          "remainingTime": mediaPlayer.remainingTime.intValue])
+            }
             break
         case .esAdded:
-            print("esAdded")
+            if onEsAdded != nil {
+                onEsAdded!(["state": VLCMediaPlayerStateToString(mediaPlayer.state) ?? "No State" ,
+                            "time": mediaPlayer.time.intValue,
+                            "mediaLength": mediaPlayer.media.length.intValue,
+                            "mediaLengthMinute": mediaPlayer.media.length.stringValue ?? "",
+                            "remainingTime": mediaPlayer.remainingTime.intValue])
+            }
             break
         case .opening:
-            print("opening")
+            if onOpening != nil {
+                onOpening!(["state": VLCMediaPlayerStateToString(mediaPlayer.state) ?? "No State" ,
+                            "time": mediaPlayer.time.intValue,
+                            "mediaLength": mediaPlayer.media.length.intValue,
+                            "remainingTime": mediaPlayer.remainingTime.intValue])
+            }
             break
         case .paused:
-            print("paused")
+            if onPaused != nil {
+                onPaused!(["state": VLCMediaPlayerStateToString(mediaPlayer.state) ?? "No State" ,
+                            "time": mediaPlayer.time.intValue,
+                            "mediaLength": mediaPlayer.media.length.intValue,
+                            "remainingTime": mediaPlayer.remainingTime.intValue])
+            }
             break
         case .playing:
-            print("playing")
+            if onPlaying != nil {
+                onPlaying!(["state": VLCMediaPlayerStateToString(mediaPlayer.state) ?? "No State" ,
+                           "time": mediaPlayer.time.intValue,
+                           "mediaLength": mediaPlayer.media.length.intValue,
+                           "remainingTime": mediaPlayer.remainingTime.intValue])
+            }
             break
         default:
             break
+        }
+    }
+    
+    func mediaPlayerTimeChanged(_ aNotification: Notification!) {
+        if onTimeChanged != nil {
+            onTimeChanged!(["state": VLCMediaPlayerStateToString(mediaPlayer.state) ?? "No State" ,
+                            "time": mediaPlayer.time.intValue,
+                            "mediaLength": mediaPlayer.media.length.intValue,
+                            "remainingTime": mediaPlayer.remainingTime.intValue])
         }
     }
 }

@@ -12,11 +12,9 @@ RCT_EXTERN_METHOD(play:(nonnull NSNumber *)node)
 RCT_EXTERN_METHOD(pause:(nonnull NSNumber *)node)
 RCT_EXTERN_METHOD(togglePlay:(nonnull NSNumber *)node)
 RCT_EXTERN_METHOD(stop:(nonnull NSNumber *)node)
-RCT_EXTERN_METHOD(remainingTime:(nonnull NSNumber *)node)
-RCT_EXTERN_METHOD(state:(nonnull NSNumber *)node)
+RCT_EXTERN_METHOD(setMediaTime:(nonnull NSNumber *)node time:(nonnull NSNumber *)time)
 
 #pragma mark Extern-Methods-With-Callback
-RCT_EXTERN_METHOD(getTime:(nonnull NSNumber *)node resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
 
 
 
@@ -24,6 +22,25 @@ RCT_EXTERN_METHOD(getTime:(nonnull NSNumber *)node resolver:(RCTPromiseResolveBl
 RCT_EXPORT_VIEW_PROPERTY(src, NSString);
 RCT_EXPORT_VIEW_PROPERTY(width, NSNumber)
 RCT_EXPORT_VIEW_PROPERTY(height, NSNumber)
+
+#pragma mark Properties-With-CallBack
+RCT_EXPORT_VIEW_PROPERTY(onStopped, RCTDirectEventBlock)
+RCT_EXPORT_VIEW_PROPERTY(onBuffering, RCTDirectEventBlock)
+RCT_EXPORT_VIEW_PROPERTY(onEnded, RCTDirectEventBlock)
+RCT_EXPORT_VIEW_PROPERTY(onError, RCTDirectEventBlock)
+RCT_EXPORT_VIEW_PROPERTY(onEsAdded, RCTDirectEventBlock)
+RCT_EXPORT_VIEW_PROPERTY(onOpening, RCTDirectEventBlock)
+RCT_EXPORT_VIEW_PROPERTY(onPaused, RCTDirectEventBlock)
+RCT_EXPORT_VIEW_PROPERTY(onPlaying, RCTDirectEventBlock)
+RCT_EXPORT_VIEW_PROPERTY(onStateChange, RCTDirectEventBlock)
+RCT_EXPORT_VIEW_PROPERTY(onTimeChange, RCTDirectEventBlock)
+
+#pragma mark Custom-Properties
+//RCT_CUSTOM_VIEW_PROPERTY(region, MKCoordinateRegion, MKMapView)
+//{
+//    [view setRegion:json ? [RCTConvert MKCoordinateRegion:json] : defaultView.region animated:YES];
+//}
+
 
 //    RCT_EXPORT_VIEW_PROPERTY(onPlay, RCTBubblingEventBlock)
 //    RCT_EXPORT_VIEW_PROPERTY(onPause, RCTDirectEventBlock)

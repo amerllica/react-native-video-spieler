@@ -22,15 +22,13 @@ class RCTIrPlayerManager: RCTViewManager {
     }
     
     @objc func play(_ node: NSNumber) {
-        print("--------------->play manager")
-        
         DispatchQueue.main.async {
-          let component = self.bridge.uiManager.view(
-            forReactTag: node
-          ) as! IrPlayer
-          component.play()
+            let component = self.bridge.uiManager.view(
+                forReactTag: node
+            ) as! IrPlayer
+            component.play()
         }
-      }
+    }
 
     @objc func pause(_ node: NSNumber) {
         DispatchQueue.main.async {
@@ -59,50 +57,15 @@ class RCTIrPlayerManager: RCTViewManager {
         }
     }
     
-    @objc func remainingTime(_ node: NSNumber) -> String {
+    
+    @objc func setMediaTime(_ node: NSNumber, time: NSNumber) {
+        DispatchQueue.main.async {
             let component = self.bridge.uiManager.view(
                 forReactTag: node
             ) as! IrPlayer
-            return component.remainingTime()
-    }
-    
-    @objc func state(_ node: NSNumber) -> String {
-        let component = self.bridge.uiManager.view(
-            forReactTag: node
-        ) as! IrPlayer
-        return component.state()
-    }
-
-//    @objc
-//    func getTime(_ node: NSNumber) -> String {
-//        print("--------------->gettime manager")
-//
-//        DispatchQueue.main.sync {
-//            let component = self.bridge.uiManager.view(
-//                forReactTag: node
-//            ) as! IrPlayer
-//            return component.getTime()
-//        }
-//    }
-    
-    @objc
-    func getTime(
-        _ node: NSNumber,
-        _ resolve: RCTPromiseResolveBlock,
-        rejecter reject: RCTPromiseRejectBlock
-    ) -> Void {
-        let component = self.bridge.uiManager.view(
-            forReactTag: node
-        ) as! IrPlayer
-        let count = 1
-        if (count == 0) {
-            let error = NSError(domain: "", code: 200, userInfo: nil)
-            reject("E_COUNT", "count cannot be negative", error)
-        } else {
-            resolve(component.getTime())
+            component.setMediaTime(time: time)
         }
     }
-   
     
 //    @objc
 //    func getCount(_ callback: RCTResponseSenderBlock) {

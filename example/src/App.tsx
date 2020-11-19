@@ -1,9 +1,10 @@
 import * as React from 'react';
-import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, Slider } from 'react-native';
 import RCTIrPlayerView from 'react-native-ir-player';
 
 export default function App() {
   const thePlayer = React.useRef(null);
+  const [mediaLength, setMediaLength] = React.useState(0);
 
   const playHandler = () => {
     thePlayer.current.play();
@@ -11,6 +12,7 @@ export default function App() {
 
   const pauseHandler = () => {
     thePlayer.current.pause();
+    console.log(thePlayer.current.props.time);
   };
 
   const stopHandler = () => {
@@ -51,8 +53,30 @@ export default function App() {
         <Text>TOGGLE_PLAY!</Text>
       </TouchableOpacity>
 
+
       <View style={styles.videoWrapper}>
+        <Slider
+          maximumValue={mediaLength}
+          minimumValue={0}
+          onSlidingComplete={(value) => {
+console.log('------> after seek: ', value);
+
+            thePlayer.current.seek(value)
+          }}
+        />
         <RCTIrPlayerView
+          onEsAdded={({ mediaLength: ml }) => {
+console.log('=======>> inside on es added: ', ml);
+            setMediaLength(ml)
+          }}
+          onBuffering={({ mediaLength: ml }) => {
+console.log('=======>> inside on buffering: ', ml);
+            setMediaLength(ml)
+          }}
+          onTimeChanged={({ mediaLength: ml}) => {
+            console.log('=======>> inside on time changed: ', ml);
+
+          }}
           ref={thePlayer}
           width={200}
           height={100}
