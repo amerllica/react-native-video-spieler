@@ -12,10 +12,12 @@ RCT_EXTERN_METHOD(play:(nonnull NSNumber *)node)
 RCT_EXTERN_METHOD(pause:(nonnull NSNumber *)node)
 RCT_EXTERN_METHOD(togglePlay:(nonnull NSNumber *)node)
 RCT_EXTERN_METHOD(stop:(nonnull NSNumber *)node)
+RCT_EXTERN_METHOD(volumeUp:(nonnull NSNumber *)node)
+RCT_EXTERN_METHOD(volumeDown:(nonnull NSNumber *)node)
 RCT_EXTERN_METHOD(setMediaTime:(nonnull NSNumber *)node time:(nonnull NSNumber *)time)
+RCT_EXTERN_METHOD(setVolume:(nonnull NSNumber *)node volume:(nonnull NSNumber *)volume)
 
 #pragma mark Extern-Methods-With-Callback
-
 
 
 #pragma mark Properties

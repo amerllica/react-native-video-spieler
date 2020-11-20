@@ -67,6 +67,15 @@ class RCTIrPlayerManager: RCTViewManager {
         }
     }
     
+    @objc func setVolume(_ node: NSNumber, volume: NSNumber) {
+        DispatchQueue.main.async {
+            let component = self.bridge.uiManager.view(
+                forReactTag: node
+            ) as! IrPlayer
+            component.setVolume(volume: volume)
+        }
+    }
+    
 //    @objc
 //    func getCount(_ callback: RCTResponseSenderBlock) {
 //      callback([count])

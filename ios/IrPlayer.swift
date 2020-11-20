@@ -37,6 +37,7 @@ class IrPlayer: UIView {
         }
     }
     
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
@@ -83,6 +84,21 @@ class IrPlayer: UIView {
         }
     }
     
+    @objc(volumeUp)
+    func volumeUp() -> Void {
+        mediaPlayer.audio.volumeUp()
+    }
+    
+    @objc(volumeDown)
+    func volumeDown() -> Void {
+        mediaPlayer.audio.volumeDown()
+    }
+    
+    @objc
+    func setVolume(volume : NSNumber) -> Void {
+        mediaPlayer.audio.volume = volume.int32Value
+    }
+    
     @objc
     func setMediaTime(time : NSNumber) -> Void {
         mediaPlayer.time = VLCTime(int: time.int32Value)
@@ -99,6 +115,7 @@ extension IrPlayer: VLCMediaPlayerDelegate {
         if onStateChange != nil {
             onStateChange!(["state": VLCMediaPlayerStateToString(mediaPlayer.state) ?? "No State" ,
                             "time": mediaPlayer.time.intValue,
+                            "volume": mediaPlayer.audio.volume,
                             "mediaLength": mediaPlayer.media.length.intValue,
                             "remainingTime": mediaPlayer.remainingTime.intValue])
         }
@@ -107,6 +124,7 @@ extension IrPlayer: VLCMediaPlayerDelegate {
             if onStopped != nil {
                 onStopped!(["state": VLCMediaPlayerStateToString(mediaPlayer.state) ?? "No State" ,
                             "time": mediaPlayer.time.intValue,
+                            "volume": mediaPlayer.audio.volume,
                             "mediaLength": mediaPlayer.media.length.intValue,
                             "remainingTime": mediaPlayer.remainingTime.intValue])
             }
@@ -115,6 +133,7 @@ extension IrPlayer: VLCMediaPlayerDelegate {
             if onBuffering != nil {
                 onBuffering!(["state": VLCMediaPlayerStateToString(mediaPlayer.state) ?? "No State" ,
                             "time": mediaPlayer.time.intValue,
+                            "volume": mediaPlayer.audio.volume,
                             "mediaLength": mediaPlayer.media.length.intValue,
                             "mediaLengthMinute": mediaPlayer.media.length.stringValue ?? "",
                             "remainingTime": mediaPlayer.remainingTime.intValue])
@@ -124,6 +143,7 @@ extension IrPlayer: VLCMediaPlayerDelegate {
             if onEnded != nil {
                 onEnded!(["state": VLCMediaPlayerStateToString(mediaPlayer.state) ?? "No State" ,
                           "time": mediaPlayer.time.intValue,
+                          "volume": mediaPlayer.audio.volume,
                           "mediaLength": mediaPlayer.media.length.intValue,
                           "remainingTime": mediaPlayer.remainingTime.intValue])
             }
@@ -132,6 +152,7 @@ extension IrPlayer: VLCMediaPlayerDelegate {
             if onError != nil {
                 onError!(["state": VLCMediaPlayerStateToString(mediaPlayer.state) ?? "No State" ,
                           "time": mediaPlayer.time.intValue,
+                          "volume": mediaPlayer.audio.volume,
                           "mediaLength": mediaPlayer.media.length.intValue,
                           "remainingTime": mediaPlayer.remainingTime.intValue])
             }
@@ -140,6 +161,7 @@ extension IrPlayer: VLCMediaPlayerDelegate {
             if onEsAdded != nil {
                 onEsAdded!(["state": VLCMediaPlayerStateToString(mediaPlayer.state) ?? "No State" ,
                             "time": mediaPlayer.time.intValue,
+                            "volume": mediaPlayer.audio.volume,
                             "mediaLength": mediaPlayer.media.length.intValue,
                             "mediaLengthMinute": mediaPlayer.media.length.stringValue ?? "",
                             "remainingTime": mediaPlayer.remainingTime.intValue])
@@ -149,6 +171,7 @@ extension IrPlayer: VLCMediaPlayerDelegate {
             if onOpening != nil {
                 onOpening!(["state": VLCMediaPlayerStateToString(mediaPlayer.state) ?? "No State" ,
                             "time": mediaPlayer.time.intValue,
+                            "volume": mediaPlayer.audio.volume,
                             "mediaLength": mediaPlayer.media.length.intValue,
                             "remainingTime": mediaPlayer.remainingTime.intValue])
             }
@@ -157,6 +180,7 @@ extension IrPlayer: VLCMediaPlayerDelegate {
             if onPaused != nil {
                 onPaused!(["state": VLCMediaPlayerStateToString(mediaPlayer.state) ?? "No State" ,
                             "time": mediaPlayer.time.intValue,
+                            "volume": mediaPlayer.audio.volume,
                             "mediaLength": mediaPlayer.media.length.intValue,
                             "remainingTime": mediaPlayer.remainingTime.intValue])
             }
@@ -165,6 +189,7 @@ extension IrPlayer: VLCMediaPlayerDelegate {
             if onPlaying != nil {
                 onPlaying!(["state": VLCMediaPlayerStateToString(mediaPlayer.state) ?? "No State" ,
                            "time": mediaPlayer.time.intValue,
+                           "volume": mediaPlayer.audio.volume,
                            "mediaLength": mediaPlayer.media.length.intValue,
                            "remainingTime": mediaPlayer.remainingTime.intValue])
             }
