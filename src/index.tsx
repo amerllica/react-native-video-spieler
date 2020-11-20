@@ -3,9 +3,14 @@ import { requireNativeComponent } from 'react-native';
 import { COMPONENT_NAME } from 'src/helper';
 import noOp from 'src/utils/noOp';
 import callNativeMethod from 'src/utils/callNativeMethod';
-import type { NativeEventType, RefInstance } from 'src/types';
+import type {
+  NativeEventType,
+  RefInstance,
+  MediaInfo,
+  IrPlayerMethodsType,
+} from 'src/types';
 
-interface IrPlayerProps {
+export interface IrPlayerProps {
   src: string;
   height: number;
   width: number;
@@ -30,39 +35,39 @@ class IrPlayer extends Component<IrPlayerProps> {
     this.irPlayerInstance = createRef();
   }
 
-  play = () => {
+  public play = () => {
     callNativeMethod(this.irPlayerInstance.current, 'play');
   };
 
-  pause = () => {
+  public pause = () => {
     callNativeMethod(this.irPlayerInstance.current, 'pause');
   };
 
-  stop = () => {
+  public stop = () => {
     callNativeMethod(this.irPlayerInstance.current, 'stop');
   };
 
-  togglePlay = () => {
+  public togglePlay = () => {
     callNativeMethod(this.irPlayerInstance.current, 'togglePlay');
   };
 
-  seek = (time: number) => {
+  public setMediaTime = (time: number) => {
     callNativeMethod(this.irPlayerInstance.current, 'setMediaTime', time);
   };
 
-  _onPlaying = (v: NativeEventType) => {
+  private _onPlaying = (v: NativeEventType) => {
     console.log('Play----->', v.nativeEvent);
   };
 
-  _onStopped = (v: NativeEventType) => {
+  private _onStopped = (v: NativeEventType) => {
     console.log('Stopped----->', v.nativeEvent);
   };
 
-  _onPaused = (v: NativeEventType) => {
+  private _onPaused = (v: NativeEventType) => {
     console.log('Paused----->', v.nativeEvent);
   };
 
-  _onEsAdded = (v: NativeEventType) => {
+  private _onEsAdded = (v: NativeEventType) => {
     const { onEsAdded = noOp } = this.props;
     console.log('on es added----->', v.nativeEvent);
 
@@ -71,7 +76,7 @@ class IrPlayer extends Component<IrPlayerProps> {
     });
   };
 
-  _onBuffering = (v: NativeEventType) => {
+  private _onBuffering = (v: NativeEventType) => {
     const { onBuffering = noOp } = this.props;
     console.log('onBuffering----->', v.nativeEvent);
 
@@ -80,7 +85,7 @@ class IrPlayer extends Component<IrPlayerProps> {
     });
   };
 
-  _onTimeChanged = (v: NativeEventType) => {
+  private _onTimeChanged = (v: NativeEventType) => {
     const { onTimeChanged = noOp } = this.props;
     console.log('onTimeChanged----->', v.nativeEvent);
 
@@ -89,11 +94,11 @@ class IrPlayer extends Component<IrPlayerProps> {
     });
   };
 
-  _onEnded = (v: NativeEventType) => {
+  private _onEnded = (v: NativeEventType) => {
     console.log('onEnded----->', v.nativeEvent);
   };
 
-  _onOpening = (v: NativeEventType) => {
+  private _onOpening = (v: NativeEventType) => {
     console.log('onOpening----->', v.nativeEvent);
   };
 
@@ -118,5 +123,7 @@ class IrPlayer extends Component<IrPlayerProps> {
     );
   }
 }
+
+export { MediaInfo, IrPlayerMethodsType };
 
 export default IrPlayer;

@@ -1,82 +1,37 @@
 import * as React from 'react';
-import { StyleSheet, View, Text, TouchableOpacity, Slider } from 'react-native';
-import RCTIrPlayerView from 'react-native-ir-player';
+import { StyleSheet, View, Slider } from 'react-native';
+import RCTIrPlayerView, {
+  MediaInfo,
+  IrPlayerMethodsType,
+} from 'react-native-ir-player';
 
-export default function App() {
-  const thePlayer = React.useRef(null);
+const App = () => {
+  const thePlayer = React.useRef<IrPlayerMethodsType>(null);
   const [mediaLength, setMediaLength] = React.useState(0);
-
-  const playHandler = () => {
-    thePlayer.current.play();
-  };
-
-  const pauseHandler = () => {
-    thePlayer.current.pause();
-    console.log(thePlayer.current.props.time);
-  };
-
-  const stopHandler = () => {
-    thePlayer.current.stop();
-  };
-
-  const togglePlayHandler = () => {
-    thePlayer.current.togglePlay();
-  };
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity
-        style={{ padding: 15, backgroundColor: 'yellow' }}
-        onPress={playHandler}
-      >
-        <Text>PLAY!</Text>
-      </TouchableOpacity>
-
-      <TouchableOpacity
-        style={{ padding: 15, backgroundColor: 'brown' }}
-        onPress={pauseHandler}
-      >
-        <Text>PAUSE!</Text>
-      </TouchableOpacity>
-
-      <TouchableOpacity
-        style={{ padding: 15, backgroundColor: 'blue' }}
-        onPress={stopHandler}
-      >
-        <Text>STOP!</Text>
-      </TouchableOpacity>
-
-      <TouchableOpacity
-        style={{ padding: 15, backgroundColor: 'green' }}
-        onPress={togglePlayHandler}
-      >
-        <Text>TOGGLE_PLAY!</Text>
-      </TouchableOpacity>
-
-
       <View style={styles.videoWrapper}>
         <Slider
           maximumValue={mediaLength}
           minimumValue={0}
           onSlidingComplete={(value) => {
-console.log('------> after seek: ', value);
-
-            thePlayer.current.seek(value)
+            thePlayer.current?.setMediaTime(value);
           }}
         />
         <RCTIrPlayerView
-          onEsAdded={({ mediaLength: ml }) => {
-console.log('=======>> inside on es added: ', ml);
-            setMediaLength(ml)
+          onEsAdded={({ mediaLength: ml }: MediaInfo) => {
+            console.log('=======>> inside on es added: ', ml);
+            setMediaLength(ml);
           }}
-          onBuffering={({ mediaLength: ml }) => {
-console.log('=======>> inside on buffering: ', ml);
-            setMediaLength(ml)
+          onBuffering={({ mediaLength: ml }: MediaInfo) => {
+            console.log('=======>> inside on buffering: ', ml);
+            setMediaLength(ml);
           }}
-          onTimeChanged={({ mediaLength: ml}) => {
+          onTimeChanged={({ mediaLength: ml }: MediaInfo) => {
             console.log('=======>> inside on time changed: ', ml);
-
           }}
+          // @ts-ignore
           ref={thePlayer}
           width={200}
           height={100}
@@ -85,7 +40,7 @@ console.log('=======>> inside on buffering: ', ml);
       </View>
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -109,7 +64,8 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     borderWidth: 1,
     borderColor: '#F0F',
-    backgroundColor: "#FFF"
-  }
+    backgroundColor: '#FFF',
+  },
 });
 
+export default App;
