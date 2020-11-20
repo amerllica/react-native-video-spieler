@@ -1,74 +1,69 @@
 import React, { Component, createRef } from 'react';
-import {
-  requireNativeComponent,
-  findNodeHandle,
-  UIManager,
-  NativeModules,
-} from 'react-native';
-const COMPONENT_NAME = 'RCTIrPlayer';
-const RCTIrPlayerView = requireNativeComponent(COMPONENT_NAME);
+import { requireNativeComponent } from 'react-native';
+import { COMPONENT_NAME } from 'src/helper';
+import noOp from 'src/utils/noOp';
+import callNativeMethod from 'src/utils/callNativeMethod';
+import type { NativeEventType, RefInstance } from 'src/types';
 
-export default class RCTIrPlayer extends Component {
-  constructor(props) {
+interface IrPlayerProps {
+  src: string;
+  height: number;
+  width: number;
+  onStopped?: Function;
+  onPlaying?: Function;
+  onPaused?: Function;
+  onEnded?: Function;
+  onOpening?: Function;
+  onBuffering?: Function;
+  onEsAdded?: Function;
+  onTimeChanged?: Function;
+}
+
+const RCTIrPlayerView = requireNativeComponent<IrPlayerProps>(COMPONENT_NAME);
+
+class IrPlayer extends Component<IrPlayerProps> {
+  private readonly irPlayerInstance: RefInstance;
+
+  constructor(props: IrPlayerProps) {
     super(props);
-    this._props = props;
-    this.irplayerInstance = createRef();
+
+    this.irPlayerInstance = createRef();
   }
 
   play = () => {
-    UIManager.dispatchViewManagerCommand(
-      findNodeHandle(this.irplayerInstance.current),
-      UIManager[COMPONENT_NAME].Commands.play,
-      []
-    );
+    callNativeMethod(this.irPlayerInstance.current, 'play');
   };
 
   pause = () => {
-    UIManager.dispatchViewManagerCommand(
-      findNodeHandle(this.irplayerInstance.current),
-      UIManager[COMPONENT_NAME].Commands.pause,
-      []
-    );
+    callNativeMethod(this.irPlayerInstance.current, 'pause');
   };
 
   stop = () => {
-    UIManager.dispatchViewManagerCommand(
-      findNodeHandle(this.irplayerInstance.current),
-      UIManager[COMPONENT_NAME].Commands.stop,
-      []
-    );
+    callNativeMethod(this.irPlayerInstance.current, 'stop');
   };
 
   togglePlay = () => {
-    UIManager.dispatchViewManagerCommand(
-      findNodeHandle(this.irplayerInstance.current),
-      UIManager[COMPONENT_NAME].Commands.togglePlay,
-      []
-    );
+    callNativeMethod(this.irPlayerInstance.current, 'togglePlay');
   };
 
-  seek = (time) => {
-    UIManager.dispatchViewManagerCommand(
-      findNodeHandle(this.irplayerInstance.current),
-      UIManager[COMPONENT_NAME].Commands.setMediaTime,
-      [time]
-    );
+  seek = (time: number) => {
+    callNativeMethod(this.irPlayerInstance.current, 'setMediaTime', time);
   };
 
-  _onPlaying = (v) => {
+  _onPlaying = (v: NativeEventType) => {
     console.log('Play----->', v.nativeEvent);
   };
 
-  _onStopped = (v) => {
+  _onStopped = (v: NativeEventType) => {
     console.log('Stopped----->', v.nativeEvent);
   };
 
-  _onPaused = (v) => {
+  _onPaused = (v: NativeEventType) => {
     console.log('Paused----->', v.nativeEvent);
   };
 
-  _onEsAdded = (v) => {
-    const { onEsAdded } = this.props;
+  _onEsAdded = (v: NativeEventType) => {
+    const { onEsAdded = noOp } = this.props;
     console.log('on es added----->', v.nativeEvent);
 
     onEsAdded({
@@ -76,8 +71,8 @@ export default class RCTIrPlayer extends Component {
     });
   };
 
-  _onBuffering = (v) => {
-    const { onBuffering } = this.props;
+  _onBuffering = (v: NativeEventType) => {
+    const { onBuffering = noOp } = this.props;
     console.log('onBuffering----->', v.nativeEvent);
 
     onBuffering({
@@ -85,8 +80,8 @@ export default class RCTIrPlayer extends Component {
     });
   };
 
-  _onTimeChanged = (v) => {
-    const { onTimeChanged } = this.props;
+  _onTimeChanged = (v: NativeEventType) => {
+    const { onTimeChanged = noOp } = this.props;
     console.log('onTimeChanged----->', v.nativeEvent);
 
     onTimeChanged({
@@ -94,20 +89,23 @@ export default class RCTIrPlayer extends Component {
     });
   };
 
-  _onEnded = (v) => {
+  _onEnded = (v: NativeEventType) => {
     console.log('onEnded----->', v.nativeEvent);
   };
 
-  _onOpening = (v) => {
+  _onOpening = (v: NativeEventType) => {
     console.log('onOpening----->', v.nativeEvent);
   };
 
-
   render() {
+    const { src, height, width } = this.props;
+
     return (
       <RCTIrPlayerView
-        ref={this.irplayerInstance}
-        {...this.props}
+        ref={this.irPlayerInstance}
+        src={src}
+        height={height}
+        width={width}
         onStopped={this._onStopped}
         onPlaying={this._onPlaying}
         onPaused={this._onPaused}
@@ -119,5 +117,6 @@ export default class RCTIrPlayer extends Component {
       />
     );
   }
-
 }
+
+export default IrPlayer;
