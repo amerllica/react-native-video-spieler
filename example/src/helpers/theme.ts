@@ -3,6 +3,7 @@ export const colors = {
   white: '#ffffff',
   black: '#000000',
   gray: '#6a6a6a',
+  viewBg: '#fafafa',
   blackGlass: 'rgba(0,0,0,0.65)',
 };
 

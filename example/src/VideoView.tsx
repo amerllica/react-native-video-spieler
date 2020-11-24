@@ -169,10 +169,11 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: colors.blackGlass,
+    backgroundColor: colors.viewBg,
   },
   videoWrapper: {
     position: 'relative',
+    backgroundColor: colors.gray,
   },
   fullscreen: {
     position: 'absolute',
