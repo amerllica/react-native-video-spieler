@@ -6,7 +6,7 @@ import callNativeMethod from 'src/utils/callNativeMethod';
 import type {
   NativeEventType,
   RefInstance,
-  MediaInfo,
+  IrPlayerMediaInfo,
   IrPlayerMethodsType,
 } from 'src/types';
 
@@ -124,6 +124,6 @@ class IrPlayer extends Component<IrPlayerProps> {
   }
 }
 
-export { MediaInfo, IrPlayerMethodsType };
+export { IrPlayerMediaInfo, IrPlayerMethodsType };
 
 export default IrPlayer;

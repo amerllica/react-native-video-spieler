@@ -1,6 +1,6 @@
 import type { BaseSyntheticEvent, RefObject } from 'react';
 
-export type MediaInfo = {
+export type IrPlayerMediaInfo = {
   target: number;
   mediaLength: number;
   time: number;
@@ -14,6 +14,6 @@ export type IrPlayerMethodsType = {
   setMediaTime: (time: number) => void;
 };
 
-export type NativeEventType = BaseSyntheticEvent<MediaInfo>;
+export type NativeEventType = BaseSyntheticEvent<IrPlayerMediaInfo>;
 
 export type RefInstance = RefObject<any>;

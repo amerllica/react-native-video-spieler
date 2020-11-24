@@ -11,7 +11,7 @@ import Controllers from './components/Controllers';
 import styleJoiner from './utils/styleJoiner';
 import getDimensions from './utils/getDimensions';
 import orientation from './utils/orientation';
-import type { IrPlayerMethodsType, MediaInfo } from './types';
+import type { IrPlayerMethodsType, IrPlayerMediaInfo } from './types';
 
 interface VideoViewProps {
   [key: string]: any;
@@ -136,15 +136,15 @@ class VideoView extends React.Component<VideoViewProps, VideoViewStates> {
               />
             )}
             <IrPlayer
-              onEsAdded={({ mediaLength: ml }: MediaInfo) => {
+              onEsAdded={({ mediaLength: ml }: IrPlayerMediaInfo) => {
                 console.log('=======>> inside on es added: ', ml);
                 this.handleCurrentPosition(ml);
               }}
-              onBuffering={({ mediaLength: ml }: MediaInfo) => {
+              onBuffering={({ mediaLength: ml }: IrPlayerMediaInfo) => {
                 console.log('=======>> inside on buffering: ', ml);
                 this.handleCurrentPosition(ml);
               }}
-              onTimeChanged={({ mediaLength: ml }: MediaInfo) => {
+              onTimeChanged={({ mediaLength: ml }: IrPlayerMediaInfo) => {
                 console.log('=======>> inside on time changed: ', ml);
               }}
               // @ts-ignore

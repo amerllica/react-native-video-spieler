@@ -1,9 +1,12 @@
 import type { StyleProp, ViewStyle } from 'react-native';
-import type { IrPlayerMethodsType, MediaInfo } from 'react-native-ir-player';
+import type {
+  IrPlayerMethodsType,
+  IrPlayerMediaInfo,
+} from 'react-native-ir-player';
 // @ts-ignore
 import type { MaterialIconsGlyphs } from 'react-native-vector-icons/MaterialIcons.js.flow';
 
-export { IrPlayerMethodsType, MediaInfo };
+export { IrPlayerMethodsType, IrPlayerMediaInfo };
 
 export type ViewStyleType = StyleProp<ViewStyle>;
 
