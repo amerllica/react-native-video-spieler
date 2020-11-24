@@ -1,5 +1,5 @@
 import { findNodeHandle, UIManager } from 'react-native';
-import { COMPONENT_NAME } from 'src/helper';
+import { COMPONENT_NAME } from '../helper';
 
 const callNativeMethod = (
   instance: any,

@@ -1,14 +1,14 @@
 import React, { Component, createRef } from 'react';
 import { requireNativeComponent } from 'react-native';
-import { COMPONENT_NAME } from 'src/helper';
-import noOp from 'src/utils/noOp';
-import callNativeMethod from 'src/utils/callNativeMethod';
+import { COMPONENT_NAME } from './helper';
+import noOp from './utils/noOp';
+import callNativeMethod from './utils/callNativeMethod';
 import type {
   NativeEventType,
   RefInstance,
-  IrPlayerMediaInfo,
-  IrPlayerMethodsType,
-} from 'src/types';
+  IrPlayerMediaInfo as IPMI,
+  IrPlayerMethodsType as IPMT,
+} from './types';
 
 export interface IrPlayerProps {
   src: string;
@@ -23,6 +23,8 @@ export interface IrPlayerProps {
   onEsAdded?: Function;
   onTimeChanged?: Function;
 }
+export interface IrPlayerMediaInfo extends IPMI {}
+export interface IrPlayerMethodsType extends IPMT {}
 
 const RCTIrPlayerView = requireNativeComponent<IrPlayerProps>(COMPONENT_NAME);
 
@@ -123,7 +125,5 @@ class IrPlayer extends Component<IrPlayerProps> {
     );
   }
 }
-
-export { IrPlayerMediaInfo, IrPlayerMethodsType };
 
 export default IrPlayer;
