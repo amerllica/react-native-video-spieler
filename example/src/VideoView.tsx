@@ -12,6 +12,7 @@ import styleJoiner from './utils/styleJoiner';
 import getDimensions from './utils/getDimensions';
 import orientation from './utils/orientation';
 import type { IrPlayerMethodsType, IrPlayerMediaInfo } from './types';
+import { colors } from './helpers/theme';
 
 interface VideoViewProps {
   [key: string]: any;
@@ -47,7 +48,7 @@ class VideoView extends React.Component<VideoViewProps, VideoViewStates> {
       currentTime: 0,
       paused: false,
       fullscreen: false,
-      showControllers: false,
+      showControllers: true,
       videoDim: initialVideoDim,
     };
 
@@ -114,7 +115,7 @@ class VideoView extends React.Component<VideoViewProps, VideoViewStates> {
     } = this.state;
 
     return (
-      <SafeAreaView>
+      <SafeAreaView style={styles.safeArea}>
         <View style={styles.container}>
           <TouchableOpacity
             onPress={this.toggleShowControllers}
@@ -161,10 +162,14 @@ class VideoView extends React.Component<VideoViewProps, VideoViewStates> {
 }
 
 const styles = StyleSheet.create({
+  safeArea: {
+    flex: 1,
+  },
   container: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+    backgroundColor: colors.blackGlass,
   },
   videoWrapper: {
     position: 'relative',
