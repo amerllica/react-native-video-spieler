@@ -67,6 +67,24 @@ class RCTIrPlayerManager: RCTViewManager {
         }
     }
     
+    @objc func volumeUp(_ node: NSNumber, volume: NSNumber) {
+        DispatchQueue.main.async {
+            let component = self.bridge.uiManager.view(
+                forReactTag: node
+            ) as! IrPlayer
+            component.volumeUp()
+        }
+    }
+    
+    @objc func volumeDown(_ node: NSNumber, volume: NSNumber) {
+        DispatchQueue.main.async {
+            let component = self.bridge.uiManager.view(
+                forReactTag: node
+            ) as! IrPlayer
+            component.volumeDown()
+        }
+    }
+    
     @objc func setVolume(_ node: NSNumber, volume: NSNumber) {
         DispatchQueue.main.async {
             let component = self.bridge.uiManager.view(
