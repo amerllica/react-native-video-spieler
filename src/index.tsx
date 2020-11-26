@@ -22,6 +22,7 @@ export interface IrPlayerProps {
   onBuffering?: Function;
   onEsAdded?: Function;
   onTimeChanged?: Function;
+  onGetMediaInfo?: Function;
 }
 export interface IrPlayerMediaInfo extends IPMI {}
 export interface IrPlayerMethodsType extends IPMT {}
@@ -55,6 +56,10 @@ class IrPlayer extends Component<IrPlayerProps> {
 
   public setMediaTime = (time: number) => {
     callNativeMethod(this.irPlayerInstance.current, 'setMediaTime', time);
+  };
+
+  public getMediaInfo = () => {
+    callNativeMethod(this.irPlayerInstance.current, 'getMediaInfo');
   };
 
   private _onPlaying = (v: NativeEventType) => {
@@ -104,6 +109,10 @@ class IrPlayer extends Component<IrPlayerProps> {
     console.log('onOpening----->', v.nativeEvent);
   };
 
+  private _onGetMediaInfo = (v: NativeEventType) => {
+    console.log('onGetMediaInfo----->', v.nativeEvent);
+  };
+
   render() {
     const { src, height, width } = this.props;
 
@@ -121,6 +130,7 @@ class IrPlayer extends Component<IrPlayerProps> {
         onBuffering={this._onBuffering}
         onEsAdded={this._onEsAdded}
         onTimeChanged={this._onTimeChanged}
+        onGetMediaInfo={this._onGetMediaInfo}
       />
     );
   }

@@ -14,8 +14,28 @@ RCT_EXTERN_METHOD(togglePlay:(nonnull NSNumber *)node)
 RCT_EXTERN_METHOD(stop:(nonnull NSNumber *)node)
 RCT_EXTERN_METHOD(volumeUp:(nonnull NSNumber *)node)
 RCT_EXTERN_METHOD(volumeDown:(nonnull NSNumber *)node)
+RCT_EXTERN_METHOD(jumpForward:(nonnull NSNumber *)node)
+RCT_EXTERN_METHOD(jumpBackward:(nonnull NSNumber *)node)
+RCT_EXTERN_METHOD(longJumpForward:(nonnull NSNumber *)node)
+RCT_EXTERN_METHOD(longJumpBackward:(nonnull NSNumber *)node)
+RCT_EXTERN_METHOD(shortJumpForward:(nonnull NSNumber *)node)
+RCT_EXTERN_METHOD(shortJumpBackward:(nonnull NSNumber *)node)
+RCT_EXTERN_METHOD(mediumJumpForward:(nonnull NSNumber *)node)
+RCT_EXTERN_METHOD(mediumJumpBackward:(nonnull NSNumber *)node)
+RCT_EXTERN_METHOD(extraShortJumpForward:(nonnull NSNumber *)node)
+RCT_EXTERN_METHOD(extraShortJumpBackward:(nonnull NSNumber *)node)
+RCT_EXTERN_METHOD(getMediaInfo:(nonnull NSNumber *)node)
+RCT_EXTERN_METHOD(rewind:(nonnull NSNumber *)node)
+RCT_EXTERN_METHOD(fastForward:(nonnull NSNumber *)node)
+
+
+#pragma mark Extern-Methods-With-Parameters
 RCT_EXTERN_METHOD(setMediaTime:(nonnull NSNumber *)node time:(nonnull NSNumber *)time)
 RCT_EXTERN_METHOD(setVolume:(nonnull NSNumber *)node volume:(nonnull NSNumber *)volume)
+RCT_EXTERN_METHOD(addPlaybackSubtitle:(nonnull NSNumber *)node subTitleSrc:(nonnull NSString *)subTitleSrc)
+RCT_EXTERN_METHOD(addPlaybackAudio:(nonnull NSNumber *)node subTitleSrc:(nonnull NSString *)audioSrc)
+RCT_EXTERN_METHOD(setCurrentVideoSubTitleIndex:(nonnull NSNumber *)node index:(nonnull NSNumber *)index)
+
 
 #pragma mark Extern-Methods-With-Callback
 
@@ -36,8 +56,28 @@ RCT_EXPORT_VIEW_PROPERTY(onPaused, RCTDirectEventBlock)
 RCT_EXPORT_VIEW_PROPERTY(onPlaying, RCTDirectEventBlock)
 RCT_EXPORT_VIEW_PROPERTY(onStateChange, RCTDirectEventBlock)
 RCT_EXPORT_VIEW_PROPERTY(onTimeChange, RCTDirectEventBlock)
+RCT_EXPORT_VIEW_PROPERTY(onGetMediaInfo, RCTDirectEventBlock)
 
 #pragma mark Custom-Properties
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //RCT_CUSTOM_VIEW_PROPERTY(region, MKCoordinateRegion, MKMapView)
 //{
 //    [view setRegion:json ? [RCTConvert MKCoordinateRegion:json] : defaultView.region animated:YES];

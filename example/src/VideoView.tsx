@@ -148,6 +148,9 @@ class VideoView extends React.Component<VideoViewProps, VideoViewStates> {
               onTimeChanged={({ mediaLength: ml }: IrPlayerMediaInfo) => {
                 console.log('=======>> inside on time changed: ', ml);
               }}
+              onGetMediaInfo={({ mediaLength: ml }: IrPlayerMediaInfo) => {
+                console.log('=======>> inside on Get Media Info: ', ml);
+              }}
               // @ts-ignore
               ref={this.videoRef}
               width={videoDim.width}

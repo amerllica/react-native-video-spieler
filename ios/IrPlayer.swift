@@ -16,7 +16,7 @@ class IrPlayer: UIView {
     @objc var onOpening: RCTDirectEventBlock?
     @objc var onPaused: RCTDirectEventBlock?
     @objc var onPlaying: RCTDirectEventBlock?
-    
+    @objc var onGetMediaInfo: RCTDirectEventBlock?
     @objc var onTimeChanged: RCTDirectEventBlock?
 
     @objc var width: NSNumber = 100 {
@@ -30,13 +30,12 @@ class IrPlayer: UIView {
             self.setupView()
         }
     }
-
+    
     @objc var src = "http://streams.videolan.org/streams/mp4/Mr_MrsSmith-h264_aac.mp4" {
         didSet {
             self.setupView()
         }
     }
-    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -54,9 +53,11 @@ class IrPlayer: UIView {
         mediaPlayer.delegate = self
         mediaPlayer.drawable = self
         if let url = URL(string: self.src) {
-            mediaPlayer.media = VLCMedia(url: url)
+            let media = VLCMedia(url: url)
+            mediaPlayer.media = media
             mediaPlayer.media.delegate = self
         }
+        
     }
 
     @objc(play)
@@ -94,6 +95,80 @@ class IrPlayer: UIView {
         mediaPlayer.audio.volumeDown()
     }
     
+    @objc(jumpForward)
+    func jumpForward() -> Void {
+        mediaPlayer.jumpForward(15)
+    }
+    
+    @objc(jumpBackward)
+    func jumpBackward() -> Void {
+        mediaPlayer.jumpBackward(15)
+    }
+    
+    @objc(longJumpForward)
+    func longJumpForward() -> Void {
+        mediaPlayer.longJumpForward()
+    }
+    
+    @objc(longJumpBackward)
+    func longJumpBackward() -> Void {
+        mediaPlayer.longJumpBackward()
+    }
+    
+    @objc(shortJumpForward)
+    func shortJumpForward() -> Void {
+        mediaPlayer.shortJumpForward()
+    }
+    
+    @objc(shortJumpBackward)
+    func shortJumpBackward() -> Void {
+        mediaPlayer.shortJumpBackward()
+    }
+    
+    @objc(mediumJumpForward)
+    func mediumJumpForward() -> Void {
+        mediaPlayer.mediumJumpForward()
+    }
+    
+    @objc(mediumJumpBackward)
+    func mediumJumpBackward() -> Void {
+        mediaPlayer.mediumJumpBackward()
+    }
+    
+    @objc(extraShortJumpForward)
+    func extraShortJumpForward() -> Void {
+        mediaPlayer.extraShortJumpForward()
+    }
+    
+    @objc(extraShortJumpBackward)
+    func extraShortJumpBackward() -> Void {
+        mediaPlayer.extraShortJumpBackward()
+    }
+    
+    @objc(rewind)
+    func rewind() -> Void {
+        mediaPlayer.rewind()
+    }
+    
+    @objc(fastForward)
+    func fastForward() -> Void {
+        mediaPlayer.fastForward()
+    }
+    
+    @objc
+    func addPlaybackSlaveSubtitle(subTitleSrc: NSString) -> Void {
+        if let url = URL(string: subTitleSrc as String) {
+            mediaPlayer.addPlaybackSlave(url , type: .subtitle, enforce: true)
+        }
+    }
+
+    @objc
+    func addPlaybackSlaveAudio(audioSrc: NSString) -> Void {
+        if let url = URL(string: audioSrc as String) {
+            mediaPlayer.addPlaybackSlave(url , type: .audio, enforce: true)
+        }
+    }
+    
     @objc
     func setVolume(volume : NSNumber) -> Void {
         mediaPlayer.audio.volume = volume.int32Value
@@ -104,7 +179,42 @@ class IrPlayer: UIView {
         mediaPlayer.time = VLCTime(int: time.int32Value)
     }
     
-
+    @objc
+    func setCurrentVideoSubTitleIndex(index : NSNumber) -> Void {
+        if mediaPlayer.numberOfSubtitlesTracks > index.intValue {
+            mediaPlayer.currentVideoSubTitleIndex = index.int32Value
+        }
+    }
+    
+    
+ 
+    
+    @objc(getMediaInfo)
+    func getMediaInfo() -> Void {
+        if onGetMediaInfo != nil {
+            onGetMediaInfo!([
+                                "videoSize": mediaPlayer.videoSize,
+                                "videoTrackNames": mediaPlayer.videoTrackNames ?? "",
+                                "videoSubTitlesNames": mediaPlayer.videoSubTitlesNames ?? "",
+                                "videoSubTitlesIndexes": mediaPlayer.videoSubTitlesIndexes ?? "",
+                                "videoAspectRatio": mediaPlayer.videoAspectRatio ?? "",
+                                "audioTrackNames": mediaPlayer.audioTrackNames ?? "",
+                                "audioTrackIndexes": mediaPlayer.audioTrackIndexes ?? "",
+                                "currentAudioTrackIndex": mediaPlayer.currentAudioTrackIndex ,
+                                "currentTitleIndex": mediaPlayer.currentTitleIndex ,
+                                "currentVideoSubTitleIndex": mediaPlayer.currentVideoSubTitleIndex ,
+                                "currentVideoTrackIndex": mediaPlayer.currentVideoTrackIndex ,
+                                "numberOfAudioTracks": mediaPlayer.numberOfAudioTracks ,
+                                "numberOfSubtitlesTracks": mediaPlayer.numberOfSubtitlesTracks ,
+                                "numberOfVideoTracks": mediaPlayer.numberOfVideoTracks ,
+                                "numberOfTitles": mediaPlayer.numberOfTitles ,
+                                "position": mediaPlayer.position ,
+                                "pitch": mediaPlayer.pitch ,
+                                "state": mediaPlayer.state,
+                                "isPlaying": mediaPlayer.isPlaying,
+                                "remainingTime": mediaPlayer.remainingTime.intValue])
+        }
+    }
 }
 
 
@@ -126,6 +236,7 @@ extension IrPlayer: VLCMediaPlayerDelegate {
                             "time": mediaPlayer.time.intValue,
                             "volume": mediaPlayer.audio.volume,
                             "mediaLength": mediaPlayer.media.length.intValue,
+                            "tracksInformation": mediaPlayer.media.tracksInformation,
                             "remainingTime": mediaPlayer.remainingTime.intValue])
             }
             break
@@ -135,6 +246,7 @@ extension IrPlayer: VLCMediaPlayerDelegate {
                             "time": mediaPlayer.time.intValue,
                             "volume": mediaPlayer.audio.volume,
                             "mediaLength": mediaPlayer.media.length.intValue,
+                            "tracksInformation": mediaPlayer.media.tracksInformation,
                             "mediaLengthMinute": mediaPlayer.media.length.stringValue ?? "",
                             "remainingTime": mediaPlayer.remainingTime.intValue])
             }
@@ -144,6 +256,7 @@ extension IrPlayer: VLCMediaPlayerDelegate {
                 onEnded!(["state": VLCMediaPlayerStateToString(mediaPlayer.state) ?? "No State" ,
                           "time": mediaPlayer.time.intValue,
                           "volume": mediaPlayer.audio.volume,
+                          "tracksInformation": mediaPlayer.media.tracksInformation,
                           "mediaLength": mediaPlayer.media.length.intValue,
                           "remainingTime": mediaPlayer.remainingTime.intValue])
             }
@@ -153,6 +266,7 @@ extension IrPlayer: VLCMediaPlayerDelegate {
                 onError!(["state": VLCMediaPlayerStateToString(mediaPlayer.state) ?? "No State" ,
                           "time": mediaPlayer.time.intValue,
                           "volume": mediaPlayer.audio.volume,
+                          "tracksInformation": mediaPlayer.media.tracksInformation,
                           "mediaLength": mediaPlayer.media.length.intValue,
                           "remainingTime": mediaPlayer.remainingTime.intValue])
             }
@@ -162,6 +276,7 @@ extension IrPlayer: VLCMediaPlayerDelegate {
                 onEsAdded!(["state": VLCMediaPlayerStateToString(mediaPlayer.state) ?? "No State" ,
                             "time": mediaPlayer.time.intValue,
                             "volume": mediaPlayer.audio.volume,
+                            "tracksInformation": mediaPlayer.media.tracksInformation,
                             "mediaLength": mediaPlayer.media.length.intValue,
                             "mediaLengthMinute": mediaPlayer.media.length.stringValue ?? "",
                             "remainingTime": mediaPlayer.remainingTime.intValue])
@@ -172,6 +287,7 @@ extension IrPlayer: VLCMediaPlayerDelegate {
                 onOpening!(["state": VLCMediaPlayerStateToString(mediaPlayer.state) ?? "No State" ,
                             "time": mediaPlayer.time.intValue,
                             "volume": mediaPlayer.audio.volume,
+                            "tracksInformation": mediaPlayer.media.tracksInformation,
                             "mediaLength": mediaPlayer.media.length.intValue,
                             "remainingTime": mediaPlayer.remainingTime.intValue])
             }
@@ -181,6 +297,7 @@ extension IrPlayer: VLCMediaPlayerDelegate {
                 onPaused!(["state": VLCMediaPlayerStateToString(mediaPlayer.state) ?? "No State" ,
                             "time": mediaPlayer.time.intValue,
                             "volume": mediaPlayer.audio.volume,
+                            "tracksInformation": mediaPlayer.media.tracksInformation,
                             "mediaLength": mediaPlayer.media.length.intValue,
                             "remainingTime": mediaPlayer.remainingTime.intValue])
             }
@@ -190,6 +307,7 @@ extension IrPlayer: VLCMediaPlayerDelegate {
                 onPlaying!(["state": VLCMediaPlayerStateToString(mediaPlayer.state) ?? "No State" ,
                            "time": mediaPlayer.time.intValue,
                            "volume": mediaPlayer.audio.volume,
+                           "tracksInformation": mediaPlayer.media.tracksInformation,
                            "mediaLength": mediaPlayer.media.length.intValue,
                            "remainingTime": mediaPlayer.remainingTime.intValue])
             }
@@ -203,6 +321,7 @@ extension IrPlayer: VLCMediaPlayerDelegate {
         if onTimeChanged != nil {
             onTimeChanged!(["state": VLCMediaPlayerStateToString(mediaPlayer.state) ?? "No State" ,
                             "time": mediaPlayer.time.intValue,
+                            "tracksInformation": mediaPlayer.media.tracksInformation,
                             "mediaLength": mediaPlayer.media.length.intValue,
                             "remainingTime": mediaPlayer.remainingTime.intValue])
         }
@@ -225,5 +344,20 @@ extension IrPlayer: VLCMediaDelegate {
         default:
             break
         }
+    }
+}
+
+extension IrPlayer: VLCMediaThumbnailerDelegate {
+    func mediaThumbnailerDidTimeOut(_ mediaThumbnailer: VLCMediaThumbnailer!) {
+        
+    }
+    
+    func mediaThumbnailer(_ mediaThumbnailer: VLCMediaThumbnailer!, didFinishThumbnail thumbnail: CGImage!) {
+//        thumbImageView?.image = UIImage(cgImage: thumbnail)
+    }
+}
+
+extension IrPlayer {
+    func xx() {
     }
 }
