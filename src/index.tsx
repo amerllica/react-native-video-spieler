@@ -38,6 +38,8 @@ class IrPlayer extends Component<IrPlayerProps> {
     this.irPlayerInstance = createRef();
   }
 
+  // Public Methods
+
   public play = () => {
     callNativeMethod(this.irPlayerInstance.current, 'play');
   };
@@ -61,6 +63,92 @@ class IrPlayer extends Component<IrPlayerProps> {
   public getMediaInfo = () => {
     callNativeMethod(this.irPlayerInstance.current, 'getMediaInfo');
   };
+
+  public volumeUp = () => {
+    callNativeMethod(this.irPlayerInstance.current, 'volumeUp');
+  };
+
+  public volumeDown = () => {
+    callNativeMethod(this.irPlayerInstance.current, 'volumeDown');
+  };
+
+  public jumpForward = () => {
+    callNativeMethod(this.irPlayerInstance.current, 'jumpForward');
+  };
+
+  public jumpBackward = () => {
+    callNativeMethod(this.irPlayerInstance.current, 'jumpBackward');
+  };
+
+  public longJumpForward = () => {
+    callNativeMethod(this.irPlayerInstance.current, 'longJumpForward');
+  };
+
+  public longJumpBackward = () => {
+    callNativeMethod(this.irPlayerInstance.current, 'longJumpBackward');
+  };
+
+  public shortJumpForward = () => {
+    callNativeMethod(this.irPlayerInstance.current, 'shortJumpForward');
+  };
+
+  public shortJumpBackward = () => {
+    callNativeMethod(this.irPlayerInstance.current, 'shortJumpBackward');
+  };
+
+  public mediumJumpForward = () => {
+    callNativeMethod(this.irPlayerInstance.current, 'mediumJumpForward');
+  };
+
+  public mediumJumpBackward = () => {
+    callNativeMethod(this.irPlayerInstance.current, 'mediumJumpBackward');
+  };
+
+  public extraShortJumpForward = () => {
+    callNativeMethod(this.irPlayerInstance.current, 'extraShortJumpForward');
+  };
+
+  public extraShortJumpBackward = () => {
+    callNativeMethod(this.irPlayerInstance.current, 'extraShortJumpBackward');
+  };
+
+  public rewind = () => {
+    callNativeMethod(this.irPlayerInstance.current, 'rewind');
+  };
+
+  public fastForward = () => {
+    callNativeMethod(this.irPlayerInstance.current, 'fastForward');
+  };
+
+  public addPlaybackSlaveSubtitle = (src: string) => {
+    callNativeMethod(
+      this.irPlayerInstance.current,
+      'addPlaybackSlaveSubtitle',
+      src
+    );
+  };
+
+  public addPlaybackSlaveAudio = (src: string) => {
+    callNativeMethod(
+      this.irPlayerInstance.current,
+      'addPlaybackSlaveAudio',
+      src
+    );
+  };
+
+  public setVolume = (value: number) => {
+    callNativeMethod(this.irPlayerInstance.current, 'setVolume', value);
+  };
+
+  public setCurrentVideoSubTitleIndex = (time: number) => {
+    callNativeMethod(
+      this.irPlayerInstance.current,
+      'setCurrentVideoSubTitleIndex',
+      time
+    );
+  };
+
+  // Private Methods
 
   private _onPlaying = (v: NativeEventType) => {
     console.log('Play----->', v.nativeEvent);
